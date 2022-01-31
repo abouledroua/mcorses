@@ -390,10 +390,10 @@ class _ResponseDemandeAccessState extends State<ResponseDemandeAccess> {
         if (result != "0") {
           Data.updList = true;
           Data.showSnack(
-              type == 2
+              msg: type == 2
                   ? 'Formation Auhtorisé a cet utilisateur ...'
                   : "Demande d'inscription annulée ...",
-              type == 2 ? Colors.green : Colors.red);
+              color: type == 2 ? Colors.green : Colors.red);
           Navigator.pop(context);
         } else {
           AwesomeDialog(

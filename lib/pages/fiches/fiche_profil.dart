@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:mcorses/home_page.dart';
-import 'package:mcorses/pages/widgets/privacy_policy.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 import 'package:mcorses/classes/user.dart';
@@ -301,7 +300,7 @@ class _ProfilPageState extends State<ProfilPage> {
         newUser: 0,
         phone: txtTel.text,
         photo: photo);
-    Data.showSnack('Profil mis à jours ...', Colors.green);
+    Data.showSnack(msg: 'Profil mis à jours ...', color: Colors.green);
     Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (context) => const HomePage()),
@@ -341,23 +340,7 @@ class _ProfilPageState extends State<ProfilPage> {
       });
     } else {
       if (Data.currentUser!.newUser == 1) {
-        var route = PageRouteBuilder(
-            pageBuilder: (context, animation, secondaryAnimation) {
-          return const PrivacyPolicy();
-        });
-        Navigator.push(context, route).then((value) {
-          if (value) {
-            insertProfil();
-          } else {
-            AwesomeDialog(
-                    context: context,
-                    dialogType: DialogType.ERROR,
-                    showCloseIcon: true,
-                    title: 'Erreur',
-                    desc: "Vous devez accepter les regles d'utilisations !!!")
-                .show();
-          }
-        });
+        insertProfil();
       } else {
         updateProfil();
       }

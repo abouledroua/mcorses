@@ -176,7 +176,7 @@ class Data {
     prefs.setInt('TIMEOUT', timeOut);
   }
 
-  static showSnack(String msg, Color color) {
+  static showSnack({required String msg, required Color color}) {
     ScaffoldMessenger.of(myContext)
         .showSnackBar(SnackBar(content: Text(msg), backgroundColor: color));
   }
@@ -247,31 +247,31 @@ class Data {
                   Container(
                       margin: const EdgeInsets.only(top: 10),
                       child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                        padding:
-                            const EdgeInsets.only(left: 10, top: 10),
-                        child: Text("Hi",
-                            style: GoogleFonts.donegalOne(
-                                color: Colors.indigoAccent,
-                                fontSize: 26,
-                                fontWeight: FontWeight.bold))),
-                    Center(
-                        child: Wrap(children: [
-                      Text(currentUser!.fullName,
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.laila(
-                              color: Colors.black,
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold))
-                    ]))
-                  ])),
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 10, top: 10),
+                                child: Text("Hi",
+                                    style: GoogleFonts.donegalOne(
+                                        color: Colors.indigoAccent,
+                                        fontSize: 26,
+                                        fontWeight: FontWeight.bold))),
+                            Center(
+                                child: Wrap(children: [
+                              Text(currentUser!.fullName,
+                                  textAlign: TextAlign.center,
+                                  style: GoogleFonts.laila(
+                                      color: Colors.black,
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold))
+                            ]))
+                          ])),
                   GestureDetector(
                       onTap: () {
-                var route = MaterialPageRoute(
-                    builder: (context) => const ProfilPage());
-                Navigator.push(context, route);
+                        var route = MaterialPageRoute(
+                            builder: (context) => const ProfilPage());
+                        Navigator.push(context, route);
                       },
                       child: circularPhoto(currentUser!.photo, context)),
                   const Divider(height: 30),
@@ -279,36 +279,36 @@ class Data {
                       color: Colors.green.shade50,
                       icon: Icons.book_outlined,
                       onTap: () {
-                Navigator.pop(context);
-                var route = PageRouteBuilder(
-                    transitionDuration: const Duration(seconds: 1),
-                    transitionsBuilder:
-                        (context, animation, secAnimation, child) {
-                      return myAnimation(child, animation);
-                    },
-                    pageBuilder:
-                        (context, animation, secondaryAnimation) {
-                      return const ListFormation();
-                    });
-                Navigator.push(context, route);
+                        Navigator.pop(context);
+                        var route = PageRouteBuilder(
+                            transitionDuration: const Duration(seconds: 1),
+                            transitionsBuilder:
+                                (context, animation, secAnimation, child) {
+                              return myAnimation(child, animation);
+                            },
+                            pageBuilder:
+                                (context, animation, secondaryAnimation) {
+                              return const ListFormation();
+                            });
+                        Navigator.push(context, route);
                       },
                       text: "Liste des Formations"),
                   _drawerButton(
                       color: Colors.cyan.shade50,
                       icon: Icons.announcement_outlined,
                       onTap: () {
-                Navigator.pop(context);
-                var route = PageRouteBuilder(
-                    transitionDuration: const Duration(seconds: 1),
-                    transitionsBuilder:
-                        (context, animation, secAnimation, child) {
-                      return myAnimation(child, animation);
-                    },
-                    pageBuilder:
-                        (context, animation, secondaryAnimation) {
-                      return const ListAnnnonces();
-                    });
-                Navigator.push(context, route);
+                        Navigator.pop(context);
+                        var route = PageRouteBuilder(
+                            transitionDuration: const Duration(seconds: 1),
+                            transitionsBuilder:
+                                (context, animation, secAnimation, child) {
+                              return myAnimation(child, animation);
+                            },
+                            pageBuilder:
+                                (context, animation, secondaryAnimation) {
+                              return const ListAnnnonces();
+                            });
+                        Navigator.push(context, route);
                       },
                       text: "Liste des Annonces"),
                   Visibility(
@@ -316,79 +316,77 @@ class Data {
                   Visibility(
                       visible: currentUser!.isAdmin,
                       child: _drawerButton(
-                  color: Colors.indigo.shade50,
-                  icon: Icons.admin_panel_settings_sharp,
-                  onTap: () {
-                    Navigator.pop(context);
-                    var route = PageRouteBuilder(
-                        transitionDuration:
-                            const Duration(seconds: 1),
-                        transitionsBuilder: (context, animation,
-                            secAnimation, child) {
-                          return myAnimation(child, animation);
-                        },
-                        pageBuilder:
-                            (context, animation, secondaryAnimation) {
-                          return const AdminList();
-                        });
-                    Navigator.push(context, route);
-                  },
-                  text: "Formateurs")),
+                          color: Colors.indigo.shade50,
+                          icon: Icons.admin_panel_settings_sharp,
+                          onTap: () {
+                            Navigator.pop(context);
+                            var route = PageRouteBuilder(
+                                transitionDuration: const Duration(seconds: 1),
+                                transitionsBuilder:
+                                    (context, animation, secAnimation, child) {
+                                  return myAnimation(child, animation);
+                                },
+                                pageBuilder:
+                                    (context, animation, secondaryAnimation) {
+                                  return const AdminList();
+                                });
+                            Navigator.push(context, route);
+                          },
+                          text: "Formateurs")),
                   Visibility(visible: !production, child: const Divider()),
                   _drawerButton(
                       color: Colors.amber.shade50,
                       icon: Icons.perm_device_information_outlined,
                       onTap: () {
-                Navigator.pop(context);
-                var route = PageRouteBuilder(
-                    transitionDuration: const Duration(seconds: 1),
-                    transitionsBuilder:
-                        (context, animation, secAnimation, child) {
-                      return myAnimation(child, animation);
-                    },
-                    pageBuilder:
-                        (context, animation, secondaryAnimation) {
-                      return const ProfilPage();
-                    });
-                Navigator.push(context, route);
+                        Navigator.pop(context);
+                        var route = PageRouteBuilder(
+                            transitionDuration: const Duration(seconds: 1),
+                            transitionsBuilder:
+                                (context, animation, secAnimation, child) {
+                              return myAnimation(child, animation);
+                            },
+                            pageBuilder:
+                                (context, animation, secondaryAnimation) {
+                              return const ProfilPage();
+                            });
+                        Navigator.push(context, route);
                       },
                       text: "Mon Profil"),
                   Visibility(
                       visible: currentUser!.isAdmin,
                       child: _drawerButton(
-                  color: Colors.blue.shade50,
-                  icon: Icons.settings,
-                  onTap: () {
-                    Navigator.pop(context);
-                    reparerBDD();
-                  },
-                  text: "Réparer La BDD")),
+                          color: Colors.blue.shade50,
+                          icon: Icons.settings,
+                          onTap: () {
+                            Navigator.pop(context);
+                            reparerBDD();
+                          },
+                          text: "Réparer La BDD")),
                   Visibility(
                       visible: !production,
                       child: _drawerButton(
-                  color: Colors.blue.shade50,
-                  icon: Icons.settings,
-                  onTap: () {
-                    Navigator.pop(context);
-                    var route = PageRouteBuilder(
-                        transitionDuration:
-                            const Duration(seconds: 1),
-                        transitionsBuilder: (context, animation,
-                            secAnimation, child) {
-                          return myAnimation(child, animation);
-                        },
-                        pageBuilder:
-                            (context, animation, secondaryAnimation) {
-                          return const SettingPage();
-                        });
-                    Navigator.push(context, route);
-                  },
-                  text: "Paramêtres")),
+                          color: Colors.blue.shade50,
+                          icon: Icons.settings,
+                          onTap: () {
+                            Navigator.pop(context);
+                            var route = PageRouteBuilder(
+                                transitionDuration: const Duration(seconds: 1),
+                                transitionsBuilder:
+                                    (context, animation, secAnimation, child) {
+                                  return myAnimation(child, animation);
+                                },
+                                pageBuilder:
+                                    (context, animation, secondaryAnimation) {
+                                  return const SettingPage();
+                                });
+                            Navigator.push(context, route);
+                          },
+                          text: "Paramêtres")),
                   _drawerButton(
                       color: Colors.red.shade50,
                       icon: Icons.logout,
                       onTap: () {
-                _logout(context);
+                        _logout(context);
                       },
                       text: "Déconnecter"),
                   const SizedBox(height: 20)
@@ -553,7 +551,9 @@ class Data {
           if (response.statusCode == 200) {
             var result = response.body;
             if (result != "0") {
-              showSnack('La base de données à été réparer ...', Colors.green);
+              showSnack(
+                  msg: 'La base de données à été réparer ...',
+                  color: Colors.green);
             } else {
               AwesomeDialog(
                       context: myContext,

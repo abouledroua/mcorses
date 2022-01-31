@@ -337,10 +337,10 @@ modifAccess(MyUser person, int type, BuildContext context) {
       if (result == "1") {
         Data.updList = true;
         Data.showSnack(
-            type == 2
+            msg: type == 2
                 ? "Accéss d'administration attribué ..."
                 : "Accéss d'administration annulée ...",
-            type == 2 ? Colors.green : Colors.red);
+            color: type == 2 ? Colors.green : Colors.red);
         Navigator.pop(context);
       } else {
         print("error:$result");

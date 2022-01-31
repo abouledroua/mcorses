@@ -57,7 +57,7 @@ class _GalleryWidgetState extends State<GalleryWidget> {
           if (response.statusCode == 200) {
             var result = response.body;
             if (result != "0") {
-              Data.showSnack('Image supprimé ...', Colors.green);
+              Data.showSnack(msg: 'Image supprimé ...', color: Colors.green);
               Navigator.of(context).pop("delete");
             } else {
               AwesomeDialog(
@@ -105,7 +105,8 @@ class _GalleryWidgetState extends State<GalleryWidget> {
     Directory documentDirectory = await getApplicationDocumentsDirectory();
     File file = File(documentDirectory.path + myImages[index].chemin);
     file.writeAsBytesSync(response.bodyBytes);
-    Data.showSnack("Image enregistré avec succée ...", Colors.green);
+    Data.showSnack(
+        msg: "Image enregistré avec succée ...", color: Colors.green);
   }
 
   @override

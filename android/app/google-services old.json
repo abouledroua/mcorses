@@ -22,22 +22,6 @@
           }
         },
         {
-          "client_id": "553525761360-he2mqk43hmu4d5pibugsoes69t5527co.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.bouledrouaamor.mcorses",
-            "certificate_hash": "8cd510f6371acea694ce0062981e412487ed3c63"
-          }
-        },
-        {
-          "client_id": "553525761360-nadgieacb4mac4dufdcrsjs32ufh2v7c.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.bouledrouaamor.mcorses",
-            "certificate_hash": "476be62bc95b8d2cd750ed488eac340df9c815c5"
-          }
-        },
-        {
           "client_id": "553525761360-gk93f517jr2p4l0lr6lp2ckrlmo8s27u.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -53,13 +37,6 @@
             {
               "client_id": "553525761360-gk93f517jr2p4l0lr6lp2ckrlmo8s27u.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "553525761360-abp65qjct0d84nfi52lnlt897tb8ralo.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.bouledrouaamor.mcorses"
-              }
             }
           ]
         }

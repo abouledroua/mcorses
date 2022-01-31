@@ -24,6 +24,7 @@ class LoginPage extends StatefulWidget {
 
 String identif = "";
 bool showPassword = false;
+late TextEditingController controller;
 
 class _LoginPageState extends State<LoginPage> {
   String? serverIP = "", userPref = "";
@@ -75,8 +76,15 @@ class _LoginPageState extends State<LoginPage> {
     getSharedPrefs().then((_) {
       initData();
     });
+    controller = TextEditingController();
     //initPlatformState();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 
   getSharedPrefs() async {
@@ -219,26 +227,50 @@ class _LoginPageState extends State<LoginPage> {
               foregroundColor: Colors.black,
               backgroundColor: Colors.white,
               onPressed: connectIdentifiant,
-              icon: Image.asset('images/connect.png', height: 32, width: 32),
+              icon: const Icon(Icons.numbers),
+              // Image.asset('images/connect.png', height: 32, width: 32),
               label: const Text("Connecter avec Identifiant")))
     ]);
   }
 
-  connectIdentifiant() async {
+  connectIdentifiant() {
     identif = '';
-    showModalBottomSheet(
+    controller.text = "";
+    showDialog(
         context: context,
-        elevation: 5,
-        enableDrag: true,
-        isScrollControlled: true,
-        backgroundColor: Colors.transparent,
         builder: (context) {
-          return const ConnectIdentifiant();
-        }).then((value) {
-      if (identif.isNotEmpty) {
-        existUser(2);
-      }
-    });
+          return AlertDialog(
+              title: const Text("Connecter Avec un Identifiant"),
+              content: TextField(
+                  controller: controller,
+                  autofocus: true,
+                  decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.numbers, color: Colors.grey),
+                      hintText: 'Entrer votre Identifiant')),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      identif = "";
+                      Navigator.pop(context);
+                    },
+                    child: const Text("Annuler",
+                        style: TextStyle(color: Colors.red))),
+                Container(
+                    decoration: const BoxDecoration(
+                        color: Colors.green,
+                        borderRadius: BorderRadius.all(Radius.circular(15))),
+                    child: TextButton(
+                        onPressed: () {
+                          if (controller.text.replaceAll(' ', '').isNotEmpty) {
+                            identif = controller.text;
+                            Navigator.pop(context);
+                            existUser(2);
+                          }
+                        },
+                        child: const Text("Connect",
+                            style: TextStyle(color: Colors.white))))
+              ]);
+        });
   }
 
   reConnectContent() {
@@ -335,7 +367,7 @@ class _LoginPageState extends State<LoginPage> {
     /*  setState(() {
       typeAuth = 3;
     });*/
-    Data.showSnack("En cours de développement ...", Colors.amber);
+    Data.showSnack(msg: "En cours de développement ...", color: Colors.amber);
   }
 
   addGoogleUser(String email) async {
@@ -500,11 +532,11 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   connectFacebook() {
-    Data.showSnack("En cours de développement ...", Colors.amber);
+    Data.showSnack(msg: "En cours de développement ...", color: Colors.amber);
   }
 
   connectPhone() {
-    Data.showSnack("En cours de développement ...", Colors.amber);
+    Data.showSnack(msg: "En cours de développement ...", color: Colors.amber);
   }
 
   existUser(int type) async {
@@ -661,89 +693,5 @@ class _LoginPageState extends State<LoginPage> {
   openHomePage() {
     var route = MaterialPageRoute(builder: (context) => const HomePage());
     Navigator.pushReplacement(context, route);
-  }
-}
-
-class ConnectIdentifiant extends StatefulWidget {
-  const ConnectIdentifiant({Key? key}) : super(key: key);
-
-  @override
-  State<ConnectIdentifiant> createState() => _ConnectIdentifiantState();
-}
-
-class _ConnectIdentifiantState extends State<ConnectIdentifiant> {
-  Widget makeDismissible({required Widget child}) => GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: () => Navigator.of(context).pop(),
-      child: GestureDetector(onTap: () {}, child: child));
-
-  @override
-  Widget build(BuildContext context) {
-    final isKeyboard = MediaQuery.of(context).viewInsets.bottom != 0;
-    return makeDismissible(
-        child: DraggableScrollableSheet(
-            initialChildSize: isKeyboard ? 0.6 : 0.3,
-            minChildSize: isKeyboard ? 0.6 : 0.3,
-            maxChildSize: 0.9,
-            builder: (_, controller) => SafeArea(
-                child: Container(
-                    decoration: const BoxDecoration(
-                        color: Colors.white,
-                        borderRadius:
-                            BorderRadius.vertical(top: Radius.circular(25))),
-                    padding: const EdgeInsets.all(10),
-                    child: ListView(controller: controller, children: [
-                      Text("Connecter Avec un Identifiant",
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.laila(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                          overflow: TextOverflow.clip),
-                      const Divider(),
-                      SizedBox(
-                          width: min(Data.widthScreen / 2, 200),
-                          child: TextFormField(
-                              initialValue: identif,
-                              onChanged: (value) {
-                                identif = value;
-                              },
-                              keyboardType: TextInputType.text,
-                              style: const TextStyle(
-                                  fontSize: 16, color: Colors.black),
-                              decoration: InputDecoration(
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  hintText: "Votre Identifiant",
-                                  hintStyle:
-                                      const TextStyle(color: Colors.black),
-                                  prefixIcon: const Icon(Icons.numbers,
-                                      color: Colors.black),
-                                  border: OutlineInputBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(20))))),
-                      const Divider(),
-                      Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            ElevatedButton.icon(
-                                style: ElevatedButton.styleFrom(
-                                    primary: Colors.white,
-                                    onPrimary: Colors.red),
-                                onPressed: () {
-                                  identif = "";
-                                  Navigator.pop(context);
-                                },
-                                icon: const Icon(Icons.groups_outlined),
-                                label: const Text("Annuler")),
-                            ElevatedButton.icon(
-                                style: ElevatedButton.styleFrom(
-                                    primary: Colors.green,
-                                    onPrimary: Colors.white),
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                icon: const Icon(Icons.groups_outlined),
-                                label: const Text("Connecter"))
-                          ])
-                    ])))));
   }
 }

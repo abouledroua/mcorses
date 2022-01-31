@@ -374,7 +374,8 @@ class _ResponseDemandeAccessState extends State<ResponseDemandeAccess> {
         var result = response.body;
         if (result != "0") {
           Data.updList = true;
-          Data.showSnack("L'inscription à été annulée ...", Colors.red);
+          Data.showSnack(
+              msg: "L'inscription à été annulée ...", color: Colors.red);
           Navigator.pop(context);
         } else {
           AwesomeDialog(

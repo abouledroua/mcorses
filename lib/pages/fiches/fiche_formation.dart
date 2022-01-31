@@ -297,8 +297,8 @@ class _FicheFormationState extends State<FicheFormation> {
                                   String path = result.files.single.path!;
                                   if (existCours(path)) {
                                     Data.showSnack(
-                                        "Fichier déjà sélectionné !!!!",
-                                        Colors.red);
+                                        msg: "Fichier déjà sélectionné !!!!",
+                                        color: Colors.red);
                                   } else {
                                     int i = myCourses.length;
                                     txtDes.text =

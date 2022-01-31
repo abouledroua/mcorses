@@ -412,7 +412,7 @@ class _ModalAnnonceState extends State<ModalAnnonce> {
         var result = response.body;
         if (result != "0") {
           Data.updList = true;
-          Data.showSnack("Annonce supprimée ...", Colors.red);
+          Data.showSnack(msg: "Annonce supprimée ...",color:  Colors.red);
           Navigator.pop(context);
         } else {
           AwesomeDialog(

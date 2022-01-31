@@ -283,11 +283,11 @@ modifAccess(MyUser person, int type, BuildContext context) {
       var result = response.body;
       if (result != "0") {
         Data.updList = true;
-        Data.showSnack(
+        Data.showSnack(msg: 
             type == 2
                 ? "Accéss d'administration attribué ..."
                 : "Accéss d'administration annulée ...",
-            type == 2 ? Colors.green : Colors.red);
+          color:   type == 2 ? Colors.green : Colors.red);
         Navigator.pop(context);
       } else {
         AwesomeDialog(

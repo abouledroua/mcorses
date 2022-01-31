@@ -260,7 +260,8 @@ class _InfoFormationState extends State<InfoFormation> {
           if (response.statusCode == 200) {
             var result = response.body;
             if (result != "0") {
-              Data.showSnack('Formation supprimé ...', Colors.green);
+              Data.showSnack(
+                  msg: 'Formation supprimé ...', color: Colors.green);
               Navigator.pop(context);
             } else {
               AwesomeDialog(
@@ -363,7 +364,8 @@ class _InfoFormationState extends State<InfoFormation> {
     if ((idAccess == 0 || loadingAccess) && (!isFormationAdmin)) {
       Navigator.pop(context);
       Data.showSnack(
-          "Vous n'êtes pas inscris dans cette formation !!!!", Colors.red);
+          msg: "Vous n'êtes pas inscris dans cette formation !!!!",
+          color: Colors.red);
     } else {
       String name = myCourses[i].designation.isEmpty
           ? p.basename(myCourses[i].path)
