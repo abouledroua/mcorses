@@ -67,21 +67,29 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
               const Divider(),
               privacyText(),
               const Divider(),
-              Row(children: [
-                Switch(
-                    value: accept,
-                    onChanged: (value) {
-                      setState(() {
-                        accept = value;
-                      });
-                    }),
-                Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Wrap(children: const [
-                      Text("J'accepte les terme d'utilisation",
-                          overflow: TextOverflow.clip)
-                    ]))
-              ]),
+              InkWell(
+                  onTap: () {
+                    setState(() {
+                      accept = !accept;
+                    });
+                  },
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Switch(
+                            value: accept,
+                            onChanged: (value) {
+                              setState(() {
+                                accept = value;
+                              });
+                            }),
+                        Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Wrap(children: const [
+                              Text("J'accepte les terme d'utilisation",
+                                  overflow: TextOverflow.clip)
+                            ]))
+                      ])),
               InkWell(
                   onTap: accept
                       ? () async {
